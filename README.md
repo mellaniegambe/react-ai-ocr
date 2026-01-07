@@ -1,45 +1,33 @@
 # React AI OCR
 
-This project demonstrates how to build a web application that uses AI for Optical Character Recognition (OCR). The application allows users to upload images, extracts text from them using a powerful AI model, and displays the results in a user-friendly interface built with React and styled with Tailwind CSS.
+A web application that uses Google's Gemini AI for Optical Character Recognition (OCR) on uploaded images, stores the results, and displays a history of past extractions.
 
-## How it Works
+This project was built with React (using Vite) and styled with Tailwind CSS. It leverages the Google Gemini API for its powerful multimodal OCR capabilities and uses Supabase for database storage.
 
-The core of this project is the interaction between the React frontend and an AI model that performs OCR. Here's a breakdown of the process:
+## Features
 
-### 1. Image Upload and Processing
+-   **AI-Powered OCR:** Upload an image and extract text using the Google Gemini AI model.
+-   **Extraction History:** Automatically saves each OCR result to a Supabase database.
+-   **History Page:** View a list of all previously extracted text with timestamps.
+-   **Modern UI:** A clean and responsive user interface built with React and Tailwind CSS.
 
-- The user selects one or more images through the web interface.
-- The React application iterates through the selected images and sends them one by one to the AI for processing.
+## Tech Stack
 
-### 2. AI-Powered OCR with Prompt Engineering
+-   **Frontend:**
+    -   React
+    -   Vite
+    -   Tailwind CSS
+-   **Backend & Services:**
+    -   **AI Model:** Google Gemini
+    -   **Database:** Supabase
 
-Instead of relying on traditional OCR libraries, we leverage a large language model with multimodal capabilities. This approach allows for more flexible and powerful text extraction.
+## Prerequisites
 
-- **System Instructions:** The AI is given a specific set of instructions to guide its behavior. This includes telling it to act as an OCR engine and to extract any and all text it sees in the image.
+-   Node.js and npm (or a compatible package manager)
+-   A Google Gemini API Key
+-   A Supabase project (for URL and Publishable Key)
 
-- **Prompt Engineering:** For each image, a carefully crafted prompt is sent to the AI. The prompt contains the image and a clear instruction, such as "Extract the text from this image."
-
-- **Structured Output:** To ensure the AI's response is consistent and easy to parse, we instruct it to provide the extracted text in a specific format (e.g., a JSON object with a "text" field). This is a key technique in prompt engineering that makes the AI's output predictable and reliable.
-
-### 3. Displaying the Results
-
-- The React application receives the structured output from the AI.
-- It then parses the response to get the extracted text.
-- The text is displayed to the user in a clean and readable format, with the UI styled using Tailwind CSS for a modern look and feel.
-
-## Key Technologies
-
-- **Frontend:**
-  - **React:** A JavaScript library for building user interfaces.
-  - **JavaScript (JSX):** Used to write the React components.
-  - **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
-
-- **Backend (AI):**
-  - Google Gemini 2.5 Flash model
-
-## Getting Started
-
-To run this project locally, you will need to have Node.js and npm installed.
+## Setup and Installation
 
 1.  **Clone the repository:**
     ```bash
@@ -52,16 +40,22 @@ To run this project locally, you will need to have Node.js and npm installed.
     npm install
     ```
 
-3.  **Set up your environment variables:**
-    - Create a `.env` file in the root of the project.
-    - Add your AI API key to the `.env` file:
-      ```
-      VITE_API_KEY=your_api_key_here
-      ```
+3.  **Set up environment variables:**
+    -   Create a file named `.env` in the root of the project.
+    -   Copy the contents of `.env.example` and add your credentials. It should look like this:
 
-4.  **Run the development server:**
-    ```bash
-    npm run dev
+    ```env
+    VITE_GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
+    VITE_SUPABASE_URL="YOUR_SUPABASE_URL"
+    VITE_SUPABASE_PUBLISHABLE_KEY="YOUR_SUPABASE_PUBLISHABLE_KEY"
     ```
 
-The application will be available at `http://localhost:5173`.
+## Running the Application
+
+Once the setup is complete, run the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173` (or the next available port).
